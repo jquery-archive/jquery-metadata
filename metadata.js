@@ -50,9 +50,11 @@ jQuery.meta = {
 };
 
 jQuery.fn._get = jQuery.fn.get;
-jQuery.fn.get = function(){
-  return this._get.apply( this, arguments )
-    .each(function(){
+jQuery.fn.get = function(arr){
+  var result = this._get.apply( this, arguments );
+
+  return arr && arr.constructor == Array ? 
+    result.each(function(){
       if ( this.metaDone ) return;
       
       var data = "{}";
@@ -82,7 +84,7 @@ jQuery.fn.get = function(){
         jQuery.extend( this, data );
       
       this.metaDone = true;
-    });
+    }) : result;
 };
 
 /**
