@@ -7,7 +7,7 @@
  *   attr:  The data will be stored in an attribute. The second parameter of $.meta.setType
  *          will indicate *which* attribute.
  *          
- *   class: The data will be stored in the class, inside { }
+ *   class: The data will be stored in the class, inside { } (default)
  *   
  *   elem:  Store the data in an element inside the current element (e.g. a script tag). The
  *          second parameter of $.meta.setType will indicate *which* element
@@ -30,7 +30,7 @@
  * @after $("#one")[0].item_id == 1; $("#one")[0].item_label == "Label"
  * 
  * @param String type The encoding type
- * @param String name The name of the attribute or class to be used to get metadata (optional)
+ * @param String name The name of the attribute to be used to get metadata (optional)
  * @author John Resig
  * @cat Plugins/Metadata
  * @descr Sets the type of encoding to be used when loading metadata for the first time
@@ -39,7 +39,7 @@
 
 
 jQuery.meta = {
-  type: "attr",
+  type: "class",
   name: "data",
   setType: function(type,name){
     this.type = type;
