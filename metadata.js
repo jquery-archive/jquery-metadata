@@ -66,7 +66,7 @@ jQuery.fn.get = function(arr){
       } else if ( jQuery.meta.type == "elem" ) {
         var e = this.getElementsByTagName(jQuery.meta.name);
         if ( e.length )
-          data = jQuery.fn.text.apply( [e[0]] );
+          data = $.trim(e[0].innerHTML);
       } else if ( this.getAttribute != undefined ) {
         var attr = this.getAttribute( jQuery.meta.name );
         if ( attr )

@@ -7,7 +7,6 @@
 <script type="text/javascript" src="metadata.js"></script>
 <script type="text/javascript">
 var testData = function(index, data) {
-	console.debug(data);
 	switch(index) {
 	case 0:
 		ok( data.foo == "bar", "Check foo property" );
@@ -32,9 +31,7 @@ var testData = function(index, data) {
 		ok( false, ["Assertion failed on index ", index, ", with data ", data].join('') );
 	}
 };
-
-$(function() { runTest(function() {
-
+jQuery.meta.single = "";
 test("meta: type attr - from data attribute", function() {
 	jQuery.meta.setType("attr", "data");
 	$("#one li").each(function(i){
@@ -64,7 +61,13 @@ test("meta: default with single data object", function() {
 	});
 });
 
-}); });
+test("meta with select and class", function() {
+	jQuery.meta.setType("class");
+	jQuery.meta.single = "stuff";
+	var e = $('#meal')[0];
+	ok( e.stuff );
+	ok( e.stuff.required );
+});
 </script>
 </head>
 
@@ -98,6 +101,12 @@ test("meta: default with single data object", function() {
 		<li class="test test2" data="{zoooo:'bar', bar:{test:'baz'}}">Some stuff</li>
 		<li class="test test2" data="{number:true, stuff:[2,8]}">Some stuff</li>
 	</ol>
+	
+	<select class="{required:true}" name="meal" id="meal">
+		<option value="">Please select...</option>
+		<option value="1">Food</option>
+		<option value="2">Milk</option>
+	</select>
 </div>
 
 <ol id="tests"></ol>
