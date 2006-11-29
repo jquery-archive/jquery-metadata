@@ -94,6 +94,7 @@ test("meta with select and class", function() {
 		<li class="test test2"><script type="data">{zoooo:'bar', bar:{test:'baz'}}</script>Some stuff</li>
 		<li class="test test2"><script type="data">{number:true, stuff:[2,8]}</script>Some stuff</li>
 	</ol>
+	<script type="data">test("execute script with type='data'", function() { ok( false, "Script tag with type='data' was executed!"); });</script>
 	
 	<ol id="four">
 		<li class="test test2" data="foo:'bar', bar:'baz', arr:[1,2]">Some stuff</li>
