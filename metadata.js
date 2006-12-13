@@ -35,6 +35,8 @@
  * @cat Plugins/Metadata
  * @descr Sets the type of encoding to be used when loading metadata for the first time
  * @type undefined
+ *
+ * Revision: $Id$
  */
 
 
