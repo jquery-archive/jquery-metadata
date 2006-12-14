@@ -51,12 +51,9 @@ jQuery.meta = {
   single: ''
 };
 
-jQuery.fn._get = jQuery.fn.get;
-jQuery.fn.get = function(arr){
-  var result = this._get.apply( this, arguments );
-
-  return arr && arr.constructor == Array ? 
-    result.each(function(){
+jQuery.fn._set = jQuery.fn.set;
+jQuery.fn.set = function(arr){
+    return this._set.apply( this, arguments ).each(function(){
       if ( this.metaDone ) return;
       
       var data = "{}";
@@ -86,7 +83,7 @@ jQuery.fn.get = function(arr){
         jQuery.extend( this, data );
       
       this.metaDone = true;
-    }) : result;
+    });
 };
 
 /**
