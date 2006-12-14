@@ -1,6 +1,8 @@
 /**
  * Sets the type of metadata encoding to use. Metadata is encoded in JSON, and each property
  * in the JSON will become a property of the element itself.
+ *
+ * REQUIRES jQuery code 1.0.4+!
  * 
  * There are three encoding types:
  *
