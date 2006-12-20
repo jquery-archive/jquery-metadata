@@ -2,7 +2,7 @@
  * Sets the type of metadata encoding to use. Metadata is encoded in JSON, and each property
  * in the JSON will become a property of the element itself.
  *
- * REQUIRES jQuery code 1.0.4+!
+ * Requires jQuery core 1.0.4+!
  * 
  * There are three encoding types:
  *
@@ -41,61 +41,64 @@
  * Revision: $Id$
  */
 
-
-jQuery.meta = {
-  type: "class",
-  name: "data",
-  setType: function(type,name){
-    this.type = type;
-    this.name = name;
-  },
-  cre: /({.*})/,
-  single: ''
-};
-
-jQuery.fn._set = jQuery.fn.set;
-jQuery.fn.set = function(arr){
-    return this._set.apply( this, arguments ).each(function(){
-      if ( this.metaDone ) return;
-      
-      var data = "{}";
-      
-      if ( jQuery.meta.type == "class" ) {
-        var m = jQuery.meta.cre.exec( this.className );
-        if ( m )
-          data = m[1];
-      } else if ( jQuery.meta.type == "elem" ) {
-        var e = this.getElementsByTagName(jQuery.meta.name);
-        if ( e.length )
-          data = $.trim(e[0].innerHTML);
-      } else if ( this.getAttribute != undefined ) {
-        var attr = this.getAttribute( jQuery.meta.name );
-        if ( attr )
-          data = attr;
-      }
-      
-      if ( !/^{/.test( data ) )
-        data = "{" + data + "}";
-
-      eval("data = " + data);
-
-      if ( jQuery.meta.single )
-        this[ jQuery.meta.single ] = data;
-      else
-        jQuery.extend( this, data );
-      
-      this.metaDone = true;
-    });
-};
-
-/**
- * Returns the metadata object for the first member of the jQuery object.
- * 
- * @name data
- * @descr Return's element's metadata object
- * @type jQuery
- * @cat Plugins/Metadata
- */
-jQuery.fn.data = function(){
-  return this[0].data;
-};
+// don't overwrite set if it was already overwritten
+// avoids ugly recursion when the plugin is included more then once
+if(!jQuery.fn._set) {
+	jQuery.meta = {
+	  type: "class",
+	  name: "data",
+	  setType: function(type,name){
+	    this.type = type;
+	    this.name = name;
+	  },
+	  cre: /({.*})/,
+	  single: ''
+	};
+	
+	jQuery.fn._set = jQuery.fn.set;
+	jQuery.fn.set = function(arr){
+	    return this._set.apply( this, arguments ).each(function(){
+	      if ( this.metaDone ) return;
+	      
+	      var data = "{}";
+	      
+	      if ( jQuery.meta.type == "class" ) {
+	        var m = jQuery.meta.cre.exec( this.className );
+	        if ( m )
+	          data = m[1];
+	      } else if ( jQuery.meta.type == "elem" ) {
+	        var e = this.getElementsByTagName(jQuery.meta.name);
+	        if ( e.length )
+	          data = $.trim(e[0].innerHTML);
+	      } else if ( this.getAttribute != undefined ) {
+	        var attr = this.getAttribute( jQuery.meta.name );
+	        if ( attr )
+	          data = attr;
+	      }
+	      
+	      if ( !/^{/.test( data ) )
+	        data = "{" + data + "}";
+	
+	      eval("data = " + data);
+	
+	      if ( jQuery.meta.single )
+	        this[ jQuery.meta.single ] = data;
+	      else
+	        jQuery.extend( this, data );
+	      
+	      this.metaDone = true;
+	    });
+	};
+	
+	/**
+	 * Returns the metadata object for the first member of the jQuery object.
+	 * 
+	 * @name data
+	 * @descr Return's element's metadata object
+	 * @type jQuery
+	 * @cat Plugins/Metadata
+	 */
+	jQuery.fn.data = function(){
+	  return this[0].data;
+	};
+}
