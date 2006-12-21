@@ -41,10 +41,8 @@
  * Revision: $Id$
  */
 
-// don't overwrite set if it was already overwritten
-// avoids ugly recursion when the plugin is included more then once
-
 (function($) {
+	// settings
 	$.meta = {
 	  type: "class",
 	  name: "data",
@@ -56,9 +54,12 @@
 	  single: ''
 	};
 	
-	var oldSet = $.fn.set;
+	// reference to original set()
+	var set = $.fn.set;
+	
+	// define new set()
 	$.fn.set = function(arr){
-	    return oldSet.apply( this, arguments ).each(function(){
+	    return set.apply( this, arguments ).each(function(){
 	      if ( this.metaDone ) return;
 	      
 	      var data = "{}";
@@ -68,7 +69,7 @@
 	        if ( m )
 	          data = m[1];
 	      } else if ( $.meta.type == "elem" ) {
-	        var e = this.getElementsByTagName(jQuery.meta.name);
+	        var e = this.getElementsByTagName($.meta.name);
 	        if ( e.length )
 	          data = $.trim(e[0].innerHTML);
 	      } else if ( this.getAttribute != undefined ) {
@@ -93,13 +94,13 @@
 	
 	/**
 	 * Returns the metadata object for the first member of the jQuery object.
-	 * 
+	 *
 	 * @name data
 	 * @descr Return's element's metadata object
 	 * @type jQuery
 	 * @cat Plugins/Metadata
 	 */
 	$.fn.data = function(){
-	  return this[0].data;
+	  return this[0][$.meta.name];
 	};
 })(jQuery);
