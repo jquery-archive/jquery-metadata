@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="../../jquery/build/test/data/testsuite.css" />
 <script type="text/javascript" src="../../jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="../../jquery/build/test/data/testrunner.js"></script>
+<!-- include metadata plugin two times to make sure that doesn't hurt anyone -->
 <script type="text/javascript" src="metadata.js"></script>
 <script type="text/javascript" src="metadata.js"></script>
 <script type="text/javascript">
@@ -79,9 +80,9 @@ test("meta with select and class", function() {
 	expect(3);
 	$.meta.setType("class");
 	$.meta.single = "stuff";
-	var e = $('#meal')[0];
-	ok( e.stuff );
-	ok( e.stuff.required );
+	var e = $('#meal').data();
+	ok( e, "data property" );
+	ok( e.required, "property on data property" );
 });
 </script>
 </head>
