@@ -32,8 +32,18 @@ var testData = function(index, data) {
 		ok( false, ["Assertion failed on index ", index, ", with data ", data].join('') );
 	}
 };
+// check if set can be intercepted without breaking metadata plugin
+(function($){
+	var oldSet = $.fn.set;
+	$.fn.set = function() {
+		ok( true, "set was interecepted" );
+		oldSet.apply(this, arguments);
+	};
+})(jQuery);
+
 jQuery.meta.single = "";
 test("meta: type attr - from data attribute", function() {
+	expect(12);
 	jQuery.meta.setType("attr", "data");
 	$("#one li").each(function(i){
 		testData(i, this);
@@ -41,6 +51,7 @@ test("meta: type attr - from data attribute", function() {
 });
 
 test("meta: type class - from className", function() {
+	expect(12);
 	jQuery.meta.setType( "class" );
 	$("#two li").each(function(i){
 		testData(i, this);
@@ -48,6 +59,7 @@ test("meta: type class - from className", function() {
 });
 
 test("meta: children script element - get data from child script element", function() {
+	expect(12);
 	jQuery.meta.setType( "elem", "script" );
 	$("#three li").each(function(i){
 		testData(i, this);
@@ -55,6 +67,7 @@ test("meta: children script element - get data from child script element", funct
 });
 
 test("meta: default with single data object", function() {
+	expect(12);
 	jQuery.meta.setType("attr","data");
 	jQuery.meta.single = "data";
 	$("#four li").each(function(i){
@@ -63,6 +76,7 @@ test("meta: default with single data object", function() {
 });
 
 test("meta with select and class", function() {
+	expect(3);
 	jQuery.meta.setType("class");
 	jQuery.meta.single = "stuff";
 	var e = $('#meal')[0];

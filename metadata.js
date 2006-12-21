@@ -43,8 +43,9 @@
 
 // don't overwrite set if it was already overwritten
 // avoids ugly recursion when the plugin is included more then once
-if(!jQuery.fn._set) {
-	jQuery.meta = {
+
+(function($) {
+	$.meta = {
 	  type: "class",
 	  name: "data",
 	  setType: function(type,name){
@@ -55,23 +56,23 @@ if(!jQuery.fn._set) {
 	  single: ''
 	};
 	
-	jQuery.fn._set = jQuery.fn.set;
-	jQuery.fn.set = function(arr){
-	    return this._set.apply( this, arguments ).each(function(){
+	var oldSet = $.fn.set;
+	$.fn.set = function(arr){
+	    return oldSet.apply( this, arguments ).each(function(){
 	      if ( this.metaDone ) return;
 	      
 	      var data = "{}";
 	      
-	      if ( jQuery.meta.type == "class" ) {
-	        var m = jQuery.meta.cre.exec( this.className );
+	      if ( $.meta.type == "class" ) {
+	        var m = $.meta.cre.exec( this.className );
 	        if ( m )
 	          data = m[1];
-	      } else if ( jQuery.meta.type == "elem" ) {
+	      } else if ( $.meta.type == "elem" ) {
 	        var e = this.getElementsByTagName(jQuery.meta.name);
 	        if ( e.length )
 	          data = $.trim(e[0].innerHTML);
 	      } else if ( this.getAttribute != undefined ) {
-	        var attr = this.getAttribute( jQuery.meta.name );
+	        var attr = this.getAttribute( $.meta.name );
 	        if ( attr )
 	          data = attr;
 	      }
@@ -81,10 +82,10 @@ if(!jQuery.fn._set) {
 	
 	      eval("data = " + data);
 	
-	      if ( jQuery.meta.single )
-	        this[ jQuery.meta.single ] = data;
+	      if ( $.meta.single )
+	        this[ $.meta.single ] = data;
 	      else
-	        jQuery.extend( this, data );
+	        $.extend( this, data );
 	      
 	      this.metaDone = true;
 	    });
@@ -98,7 +99,7 @@ if(!jQuery.fn._set) {
 	 * @type jQuery
 	 * @cat Plugins/Metadata
 	 */
-	jQuery.fn.data = function(){
+	$.fn.data = function(){
 	  return this[0].data;
 	};
-}
+})(jQuery);
