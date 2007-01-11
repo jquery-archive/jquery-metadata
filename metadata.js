@@ -67,12 +67,12 @@
 	  single: 'data'
 	};
 	
-	// reference to original set()
-	var set = $.fn.set;
+	// reference to original setArray()
+	var setArray = $.fn.setArray;
 	
-	// define new set()
-	$.fn.set = function(arr){
-	    return set.apply( this, arguments ).each(function(){
+	// define new setArray()
+	$.fn.setArray = function(arr){
+	    return setArray.apply( this, arguments ).each(function(){
 	      if ( this.metaDone ) return;
 	      
 	      var data = "{}";

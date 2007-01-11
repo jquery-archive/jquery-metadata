@@ -44,7 +44,7 @@ var testData = function(index, data) {
 
 $.meta.single = "";
 test("meta: type attr - from data attribute", function() {
-	expect(12);
+	expect(11);
 	$.meta.setType("attr", "data");
 	$("#one li").each(function(i){
 		testData(i, this);
@@ -52,7 +52,7 @@ test("meta: type attr - from data attribute", function() {
 });
 
 test("meta: type class - from className", function() {
-	expect(12);
+	expect(11);
 	$.meta.setType( "class" );
 	$("#two li").each(function(i){
 		testData(i, this);
@@ -60,7 +60,7 @@ test("meta: type class - from className", function() {
 });
 
 test("meta: children script element - get data from child script element", function() {
-	expect(12);
+	expect(11);
 	$.meta.setType( "elem", "script" );
 	$("#three li").each(function(i){
 		testData(i, this);
@@ -68,7 +68,7 @@ test("meta: children script element - get data from child script element", funct
 });
 
 test("meta: default with single data object", function() {
-	expect(12);
+	expect(11);
 	$.meta.setType("attr","data");
 	$.meta.single = "data";
 	$("#four li").each(function(i){
@@ -77,7 +77,7 @@ test("meta: default with single data object", function() {
 });
 
 test("meta with select and class", function() {
-	expect(3);
+	expect(2);
 	$.meta.setType("class");
 	$.meta.single = "stuff";
 	var e = $('#meal').data();
