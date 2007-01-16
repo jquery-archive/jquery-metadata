@@ -43,6 +43,7 @@ var testData = function(index, data) {
 })(jQuery);
 
 $.meta.single = "";
+
 test("meta: type attr - from data attribute", function() {
 	expect(11);
 	$.meta.setType("attr", "data");
@@ -65,6 +66,10 @@ test("meta: children script element - get data from child script element", funct
 	$("#three li").each(function(i){
 		testData(i, this);
 	});
+});
+
+test("check if window doesn't break anything", function() {
+	$(window).get();
 });
 
 test("meta: default with single data object", function() {

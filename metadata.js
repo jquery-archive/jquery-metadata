@@ -82,6 +82,7 @@
 	        if ( m )
 	          data = m[1];
 	      } else if ( $.meta.type == "elem" ) {
+	      	if( !this.getElementsByTagName ) return;
 	        var e = this.getElementsByTagName($.meta.name);
 	        if ( e.length )
 	          data = $.trim(e[0].innerHTML);
