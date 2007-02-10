@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="../../jquery/build/test/data/testsuite.css" />
-<script type="text/javascript" src="../../jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="../../jquery/build/test/data/testrunner.js"></script>
+<link rel="stylesheet" href="test/testsuite.css" />
+<script type="text/javascript" src="test/jquery.js"></script>
+<script type="text/javascript" src="test/testrunner.js"></script>
 <!-- include metadata plugin two times to make sure that doesn't hurt anyone -->
-<script type="text/javascript" src="metadata.js"></script>
-<script type="text/javascript" src="metadata.js"></script>
+<script type="text/javascript" src="../lib/jQuery/metadata.js"></script>
+<script type="text/javascript" src="../lib/jQuery/metadata.js"></script>
 <script type="text/javascript">
-var testData = function(index, data) {
+function testData(index, data) {
 	switch(index) {
 	case 0:
 		ok( data.foo == "bar", "Check foo property" );
@@ -32,59 +32,52 @@ var testData = function(index, data) {
 	default:
 		ok( false, ["Assertion failed on index ", index, ", with data ", data].join('') );
 	}
-};
-// check if set can be intercepted without breaking metadata plugin
-(function($){
-	var oldSet = $.fn.set;
-	$.fn.set = function() {
-		ok( true, "set was interecepted" );
-		oldSet.apply(this, arguments);
-	};
-})(jQuery);
+}
 
-$.meta.single = "";
+// check if set can be intercepted without breaking metadata plugin
+var oldSet = jQuery.fn.set;
+jQuery.fn.set = function() {
+	ok( true, "set was interecepted" );
+	oldSet.apply(this, arguments);
+};
+
+jQuery.meta.single = "";
 
 test("meta: type attr - from data attribute", function() {
 	expect(11);
-	$.meta.setType("attr", "data");
-	$("#one li").each(function(i){
-		testData(i, this);
-	});
+	jQuery.meta.setType("attr", "data");
+	jQuery("#one li").each(testData);
 });
 
 test("meta: type class - from className", function() {
 	expect(11);
-	$.meta.setType( "class" );
-	$("#two li").each(function(i){
-		testData(i, this);
-	});
+	jQuery.meta.setType( "class" );
+	jQuery("#two li").each(testData);
 });
 
 test("meta: children script element - get data from child script element", function() {
 	expect(11);
-	$.meta.setType( "elem", "script" );
-	$("#three li").each(function(i){
-		testData(i, this);
-	});
+	jQuery.meta.setType( "elem", "script" );
+	jQuery("#three li").each(testData);
 });
 
 test("check if window doesn't break anything", function() {
-	$(window).get();
+	jQuery(window).get();
 });
 
 test("meta: default with single data object", function() {
 	expect(11);
-	$.meta.setType("attr","data");
-	$.meta.single = "data";
-	$("#four li").each(function(i){
+	jQuery.meta.setType("attr","data");
+	jQuery.meta.single = "data";
+	jQuery("#four li").each(function(i){
 		testData(i, this.data);
 	});
 });
 
 test("meta with select and class", function() {
 	expect(2);
-	$.meta.setType("class");
-	$.meta.single = "stuff";
+	jQuery.meta.setType("class");
+	jQuery.meta.single = "stuff";
 	var e = $('#meal').data();
 	ok( e, "data property" );
 	ok( e.required, "property on data property" );
