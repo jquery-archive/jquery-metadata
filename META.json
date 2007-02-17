@@ -14,6 +14,12 @@
 	"build_requires": {
 		"jQuery-testrunner": 0
 	},
+	"provides": {
+		"jQuery.Metadata": {
+			"version": 0.9,
+			"file": "lib/jQuery/Metadata.js"
+		}
+	},
 	"keywords": [
 		"data",
 		"utility"
