@@ -82,6 +82,12 @@ test("meta with select and class", function() {
 	ok( e, "data property" );
 	ok( e.required, "property on data property" );
 });
+
+test("try to add and remove classes on metadata elements", function() {
+	$("#two li").addClass("foobar").addClass("foo bar").removeClass("foobar");
+	ok( $("#two li").is(".foo") );
+	ok( $("#two li").is(".bar") );
+});
 </script>
 </head>
 
