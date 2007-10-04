@@ -92,10 +92,10 @@
 	          data = attr;
 	      }
 	      
-	      if ( !/^{/.test( data ) )
+	      if ( data.indexOf( '{' ) <0 )
 	        data = "{" + data + "}";
 	
-	      eval("data = " + data);
+	      data = eval("(" + data + ")");
 	
 	      if ( $.meta.single )
 	        this[ $.meta.single ] = data;
