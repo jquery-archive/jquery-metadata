@@ -1,13 +1,13 @@
 /*
  * Metadata - jQuery plugin for parsing metadata from elements
  *
- * Copyright (c) 2006 John Resig, Yehuda Katz, J�rn Zaefferer
+ * Copyright (c) 2006 John Resig, Yehuda Katz, J�örn Zaefferer, Paul McLanahan
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  *
- * Revision: $Id: metadata.js 3553 2007-10-04 20:34:19Z joern.zaefferer $
+ * Revision: $Id: jquery.metadata.js 3620 2007-10-10 20:55:38Z pmclanahan $
  *
  */
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('(6($){$.4={g:"o",f:"j",t:6(a,b){2.g=a;2.f=b},n:/({.*})/,7:\'j\'};5 d=$.h.q;$.h.q=6(c){8 d.E(2,C).z(6(){3(2.l||2.v==9||$.u(2))8;5 a="{}";3($.4.g=="o"){5 m=$.4.n.s(2.r);3(m)a=m[1]}i 3($.4.g=="J"){3(!2.p)8;5 e=2.p($.4.f);3(e.I)a=$.H(e[0].D)}i 3(2.k!=B){5 b=2.k($.4.f);3(b)a=b}3(a.A(\'{\')<0)a="{"+a+"}";a=F("("+a+")");3($.4.7)2[$.4.7]=a;i $.G(2,a);2.l=y})};$.h.x=6(){8 2[0][$.4.7]}})(w);',46,46,'||this|if|meta|var|function|single|return|||||||name|type|fn|else|metadata|getAttribute|metaDone||cre|class|getElementsByTagName|setArray|className|exec|setType|isXMLDoc|nodeType|jQuery|data|true|each|indexOf|undefined|arguments|innerHTML|apply|eval|extend|trim|length|elem'.split('|'),0,{}))
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('(9($){$.r({3:{7:{8:\'l\',h:\'3\',q:/({.*})/,4:\'3\'},w:9(a,b){g.7.8=a;g.7.h=b},j:9(b,c){5 d=$.r({},g.7,c);2(!d.4.o)d.4=\'3\';5 a=$.n(b,d.4);2(a)6 a;a="{}";2(d.8=="l"){5 m=d.q.v(b.u);2(m)a=m[1]}k 2(d.8=="t"){2(!b.i)6;5 e=b.i(d.h);2(e.o)a=$.s(e[0].C)}k 2(b.p!=A){5 f=b.p(d.h);2(f)a=f}2(a.z(\'{\')<0)a="{"+a+"}";a=y("("+a+")");$.n(b,d.4,a);6 a}}});$.x.3=9(a){6 $.3.j(g[0],a)}})(B);',39,39,'||if|metadata|single|var|return|defaults|type|function|||||||this|name|getElementsByTagName|get|else|class||data|length|getAttribute|cre|extend|trim|elem|className|exec|setType|fn|eval|indexOf|undefined|jQuery|innerHTML'.split('|'),0,{}))
