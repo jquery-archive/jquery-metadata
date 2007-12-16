@@ -84,7 +84,8 @@ $.extend({
 				if ( m )
 					data = m[1];
 			} else if ( settings.type == "elem" ) {
-				if( !elem.getElementsByTagName ) return;
+				if( !elem.getElementsByTagName )
+					return undefined;
 				var e = elem.getElementsByTagName(settings.name);
 				if ( e.length )
 					data = $.trim(e[0].innerHTML);
