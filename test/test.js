@@ -77,3 +77,9 @@ test("try to add and remove classes on metadata elements", function() {
 	ok( $("#two li").is(".foo"), 'Check class foo was added.' );
 	ok( $("#two li").is(".bar"), 'Check class bar was added.' );
 });
+
+test("meta: type html5 - from data-*", function() {
+	expect(11);
+	jQuery.metadata.setType("html5");
+	jQuery("#five li").each(testData);
+});
