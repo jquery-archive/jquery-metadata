@@ -3,7 +3,7 @@
 	"version": 2.0,
 	"author": [
 		"John Resig <jeresig@gmail.com>",
-		"Jörn Zaefferer <joern.zaefferer@gmail.com>",
+		"JÃ¶rn Zaefferer <joern.zaefferer@gmail.com>",
 		"Paul McLanahan <pmclanahan@gmail.com>"
 	],
 	"abstract": "Quietly extract JSON metadata contained within DOM elements.",
