@@ -139,7 +139,9 @@
 					object = getObject(data.indexOf('{') < 0 ? '{' + data + '}' : data);
 				}
 
-				$.data( elem, settings.single, object );
+				if( data !== '{}' ) {
+					$.data( elem, settings.single, object );
+				}
 
 				return object;
 			}
