@@ -7,7 +7,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  *
- * Revision: 
+ * Version: 2.1 
  *
  */
 
@@ -77,17 +77,17 @@
 			},
 			get: function( elem, opts ){
 				var settings = $.extend({}, this.defaults,opts), 
-				object = {}, data, match, attr;
+					object = {}, data, match, attr;
 
 				// check for empty string in single property
 				if ( !settings.single.length ) {
 					settings.single = 'metadata';
 				}
 
-				data = $.data(elem, settings.single);
-
 				// returned cached data if it already exists
+				data = $.data(elem, settings.single);
 				if(data) { return data; }
+
 				data = '{}';
 
 				function getData(data) {
@@ -108,38 +108,42 @@
 					return data;
 				}
 				
-				if ( settings.type == 'html5' ) {
+				if(settings.type == 'html5') {
 					$( elem.attributes ).each(function() {
 						var name = this.nodeName;
 						
 						if(name.match(/^data-/)) {
 							name = name.replace(/^data-/, '');
-							object[name] = getObject(this.nodeValue);
+							object[name] = getObject( this.nodeValue );
 						}
 					});
 				} 
 				else {
 					if(settings.type == 'class') {
 						match = settings.cre.exec( elem.className );
-						if(match) { data = match[1]; }
+						if(match) {
+							data = match[1];
+						}
 					} 
 					else if(settings.type == 'elem') {
 						if(!elem.getElementsByTagName) { return; }
 						
-						match = elem.getElementsByTagName(settings.name);
+						match = elem.getElementsByTagName( settings.name );
 						if(match.length) {
 							data = $.trim(match[0].innerHTML);
 						}
 					} 
 					else if(undefined !== elem.getAttribute) {
 						attr = elem.getAttribute( settings.name );
-						if(attr) { data = attr; }
+						if(attr) {
+							data = attr;
+						}
 					}
-					
+
 					object = getObject(data.indexOf('{') < 0 ? '{' + data + '}' : data);
 				}
 
-				if( data !== '{}' ) {
+				if(data !== '{}') {
 					$.data( elem, settings.single, object );
 				}
 
