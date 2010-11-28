@@ -62,7 +62,7 @@
  */
 
 (function($, window, undefined) {
-	
+
 	$.extend({
 		metadata : {
 			defaults : {
@@ -78,23 +78,23 @@
 			get: function( elem, opts ){
 				var settings = $.extend({}, this.defaults,opts), 
 				object = {}, data, match, attr;
-				
+
 				// check for empty string in single property
 				if ( !settings.single.length ) {
 					settings.single = 'metadata';
 				}
-				
+
 				data = $.data(elem, settings.single);
-				
+
 				// returned cached data if it already exists
 				if(data) { return data; }
 				data = '{}';
-				
+
 				function getData(data) {
 					if('string' !== typeof data) {
 						return data;
 					}
-					
+
 					if(data.indexOf('{') < 0) {
 						data = eval('(' + data + ')');
 					}
@@ -104,7 +104,7 @@
 					if('string' === typeof data) {
 						data = eval('(' + data + ')');
 					}
-					
+
 					return data;
 				}
 				
@@ -138,14 +138,14 @@
 					
 					object = getObject(data.indexOf('{') < 0 ? '{' + data + '}' : data);
 				}
-				
+
 				$.data( elem, settings.single, object );
-				
+
 				return object;
 			}
 		}
 	});
-	
+
 	/**
 	 * Returns the metadata object for the first member of the jQuery object.
 	 *
@@ -158,5 +158,5 @@
 	$.fn.metadata = function( opts ){
 		return $.metadata.get( this[0], opts );
 	};
-	
+
 })(jQuery, this);
